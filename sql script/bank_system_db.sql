@@ -3,13 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2020 at 06:19 PM
+-- Generation Time: Nov 21, 2020 at 02:08 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `bank_system_db`
 --
-CREATE DATABASE IF NOT EXISTS `bank_system_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `bank_system_db`;
+CREATE DATABASE IF NOT EXISTS `bank_system_db1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bank_system_db1`;
 
 -- --------------------------------------------------------
 
@@ -29,6 +28,7 @@ USE `bank_system_db`;
 -- Table structure for table `admin`
 --
 
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `userName` varchar(20) NOT NULL,
@@ -50,6 +50,7 @@ INSERT INTO `admin` (`id`, `userName`, `firstName`, `lastName`, `password`) VALU
 -- Table structure for table `customer`
 --
 
+DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id` int(11) NOT NULL,
   `userName` varchar(20) NOT NULL,
@@ -64,6 +65,7 @@ CREATE TABLE `customer` (
 -- Table structure for table `customer_accounts`
 --
 
+DROP TABLE IF EXISTS `customer_accounts`;
 CREATE TABLE `customer_accounts` (
   `id` int(11) NOT NULL,
   `customerID` int(11) NOT NULL,
@@ -77,6 +79,7 @@ CREATE TABLE `customer_accounts` (
 -- Table structure for table `historicalData`
 --
 
+DROP TABLE IF EXISTS `historicalData`;
 CREATE TABLE `historicalData` (
   `id` int(11) NOT NULL,
   `customerID` int(11) NOT NULL,
@@ -141,6 +144,13 @@ ALTER TABLE `customer_accounts`
 --
 ALTER TABLE `historicalData`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON *
+TO bank_user1@localhost
+IDENTIFIED BY 'pa55word';
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
