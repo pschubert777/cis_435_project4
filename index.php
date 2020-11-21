@@ -1,6 +1,10 @@
 <?php
 
 $error_message ='';
+if (isset($_SESSION['user_type'])) {
+    header('Location: /cis_435_project4/3_menu_page-admin-customer');
+    exit();
+}
 if (isset($_POST['submit'])) {
     
 
@@ -8,15 +12,40 @@ if (isset($_POST['submit'])) {
 
 
 $user_type= htmlspecialchars($_POST['user_type']);
-$user = htmlspecialchars($_POST['username']);
-$password=htmlspecialchars($_POST['password']);
+$entered_username = htmlspecialchars($_POST['username']);
+$entered_password=htmlspecialchars($_POST['password']);
 
-if ($user_type==''|| $user==''|| $password=='') {
+if ($entered_username==''|| $entered_password=='' || strlen($entered_username)>20 || strlen($entered_password)>100 ) {
     $error_message='Please enter a valid input!';
 }
+
 else{
  // check if the user is valid 
+ include('db_include/db_include.php');
+ $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
+ $query= ($user_type=='admin')? 'SELECT *FROM admin WHERE userName =:userName AND password=:password':'SELECT *FROM customer WHERE username =:username AND password=:password';
+ $execute_query= $db->prepare($query);
+ $execute_query->execute(['userName'=>$entered_username, 'password'=>$entered_password]);
+ $row_count= $execute_query->rowCount();
+ echo $row_count;
+ echo $entered_username;
+ echo $entered_password;
+
+
+ if ($row_count>0) {
+     session_start();
+     $_SESSION['user_type']=$user_type;
+     $_SESSION['userName']=$entered_username;
+
+     header('Location: /cis_435_project4/3_menu_page-admin-customer');
+     exit();
+ }
+ else{
+
+$error_message='Invalid credentials!';
+ }
+ $records = $execute_query->fetch();
 
 
 
