@@ -25,7 +25,7 @@ else{
  include('db_include/db_include.php');
  $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
- $query= ($user_type=='admin')? 'SELECT *FROM admin WHERE userName =:userName AND password=:password':'SELECT *FROM customer WHERE username =:username AND password=:password';
+ $query= ($user_type=='admin')? 'SELECT *FROM admin WHERE userName =:userName AND password=:password':'SELECT *FROM customer WHERE userName =:username AND password=:password';
  $execute_query= $db->prepare($query);
  $execute_query->execute(['userName'=>$entered_username, 'password'=>$entered_password]);
  $row_count= $execute_query->rowCount();
