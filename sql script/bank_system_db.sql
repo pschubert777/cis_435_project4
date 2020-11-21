@@ -19,8 +19,8 @@ START TRANSACTION;
 --
 -- Database: `bank_system_db`
 --
-CREATE DATABASE IF NOT EXISTS `bank_system_db1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `bank_system_db1`;
+CREATE DATABASE IF NOT EXISTS `bank_system_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bank_system_db`;
 
 -- --------------------------------------------------------
 
