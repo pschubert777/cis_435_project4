@@ -26,6 +26,6 @@ session_start();
             <li><a href="/cis_435_project4/creation_account_page.php">Add Checking</a></li>
             <li><a href="/cis_435_project4/historical_data_page.php">Records</a></li>
             <li><a href="/cis_435_project4/modify_account_page.php">My Info</a></li>
-            <li><a href="/cis_435_project4/logout.php"> Logout</a></li>
+            <li><a href="/cis_435_project4/11_logout/logout.php"> Logout</a></li>
         </nav>
     </header>

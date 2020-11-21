@@ -1,6 +1,7 @@
 <?php
 
 $error_message ='';
+session_start();
 if (isset($_SESSION['user_type'])) {
     header('Location: /cis_435_project4/3_menu_page-admin-customer');
     exit();
@@ -34,8 +35,7 @@ else{
 
 
  if ($row_count>0) {
-     session_start();
-     $_SESSION['user_type']=$user_type;
+     $_SESSION['userType']=$user_type;
      $_SESSION['userName']=$entered_username;
 
      header('Location: /cis_435_project4/3_menu_page-admin-customer');
