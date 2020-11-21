@@ -4,12 +4,8 @@
     $username = 'bank_user3';
     $password = 'pa55word';
 
-    try {
-        $db = new PDO($dsn, $username, $password);
-    } catch (PDOException $e) {
-        
-        exit();
-    }
+     $db = new PDO($dsn, $username, $password);
+    
 
 
 
