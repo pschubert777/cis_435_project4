@@ -1,9 +1,38 @@
+<?php
+
+$error_message ='';
+if (isset($_POST['submit'])) {
+    
+
+//query the database to check if the user exists
+
+
+$user_type= htmlspecialchars($_POST['user_type']);
+$user = htmlspecialchars($_POST['username']);
+$password=htmlspecialchars($_POST['password']);
+
+if ($user_type==''|| $user==''|| $password=='') {
+    $error_message='Please enter a valid input!';
+}
+else{
+ // check if the user is valid 
+
+
+
+
+
+}
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Banking System</title>
-    <link rel="stylesheet" type="text/css" href="styles/login.css">
+    <link rel="stylesheet" type="text/css" href="/cis_435_project4/styles/main.css">
 </head>
 <body>
     <header>
@@ -26,14 +55,14 @@
         
        <section>
         <label for="password">Password: </label><input type="password" name="password" id="password"><br>
-
        </section>
        
+       <section>
+       <input type="submit"  name="submit" value="Login!"> <span> <?php echo $error_message?></span>
+       </section>
+       </form>
        
-
-        
        
-        </form>
 
     
     
