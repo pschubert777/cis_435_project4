@@ -22,10 +22,10 @@ session_start();
         <nav>
             <li><a href="/cis_435_project4/menu.php"> Menu</a></li>
             
-            <li><a href="/cis_435_project4/deposit_page.php">Deposit</a></li>
-            <li><a href="/cis_435_project4/creation_account_page.php">Add Checking</a></li>
+            <li><a href="/cis_435_project4/deposit_page.php">Deposit Transfer Withdraw</a></li>
+            <li><a href="/cis_435_project4/creation_account_page.php">Add New Account</a></li>
             <li><a href="/cis_435_project4/historical_data_page.php">Records</a></li>
-            <li><a href="/cis_435_project4/modify_account_page.php">My Info</a></li>
+            <li><a href="/cis_435_project4/modify_account_page.php">My Information</a></li>
             <li><a href="/cis_435_project4/11_logout/logout.php"> Logout</a></li>
         </nav>
     </header>
