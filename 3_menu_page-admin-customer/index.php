@@ -6,7 +6,7 @@
 
     include('../db_include/db_include.php');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
-    $query= ($entered_usertype=='admin')? 'SELECT id, firstName, lastName FROM admin WHERE userName =:userName':'SELECT firstName, lastName FROM customer WHERE userName =:userName';
+    $query= ($entered_usertype=='admin')? 'SELECT id, firstName, lastName FROM admin WHERE userName =:userName':'SELECT id, firstName, lastName FROM customer WHERE userName =:userName';
     $execute_query= $db->prepare($query);
     $execute_query->execute(['userName'=>$entered_username]);
     $result = $execute_query->fetch();
@@ -14,7 +14,6 @@
     $firstName = $result['firstName'];
     $lastName=$result['lastName'];
     $id = $result['id'];
-
 
     
 
@@ -41,11 +40,11 @@ if ($entered_usertype=='customer'):
 ?>
 <table>
 <tr> 
-<th>Account Type</th>
+<th>Account</th>
 <th>Balance</th>
 </tr>
 
-<?php foreach ($balance_query as $account_balance ):  ?>
+<?php foreach ($balance_result as $account_balance ):  ?>
 
             <tr>
             <td> <?php echo $account_balance['accountType'] ?> </td>
