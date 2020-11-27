@@ -36,7 +36,10 @@ else{
      $_SESSION['userType']=$user_type;
      $_SESSION['userName']=$entered_username;
 
-     header('Location: /cis_435_project4/3_menu_page-admin-customer');
+    //  Uncommment this later
+    //  header('Location: /cis_435_project4/3_menu_page-admin-customer');
+    header('Location: /cis_435_project4/7_create_new_users-admin');
+    
      exit();
  }
  else{

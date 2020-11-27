@@ -2,7 +2,7 @@
 
 <?php 
     require('../db_include/db_include.php');
-    // $userType = $_SESSION['userType'];
+    $currentUser = $_SESSION['userType'];
     $error_message ='';
 
     if (isset($_POST['submit'])) {
@@ -46,56 +46,70 @@
         }
     }
 
-        ?>
-        <!DOCTYPE html>
+        
+    ?>
+            <!DOCTYPE html>
 
-        <html lang="en">
-            <head>
-                <title>
-                    Add Technician
-                </title>
-                <meta charset="UTF-8">
-            </head>
-            <body>
-                <form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
+            <html lang="en">
+                <head>
+                    <title>
+                        Add User
+                    </title>
+                    <meta charset="UTF-8">
+                </head>
+                <body>
+                    <?php
+                        if ($currentUser == 'admin')
+                        {
+                    ?>
+                        <form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
 
-                    <section>
-                        <label for="userType">User Type:</label>
-                        <select id="userType" name="userType">
-                            <option value="admin">Admin</option>
-                            <option value="customer">Customer</option>
-                        </select>
-                    </section>
+                            <section>
+                                <label for="userType">User Type:</label>
+                                <select id="userType" name="userType">
+                                    <option value="admin">Admin</option>
+                                    <option value="customer">Customer</option>
+                                </select>
+                            </section>
 
-                    <section>
-                        <label for="firstName">First Name:</label>
-                        <input type="text" id="firstName" name="firstName">
-                        <br>
-                    </section>
-                    
-                    <section>
-                        <label for="lastName">Last Name:</label>
-                        <input type="text" id="lastName" name="lastName">
-                        <br>
-                    </section>
-                    
-                    <section>
-                        <label for="userName">username:</label>
-                        <input type="text" id="userName" name="userName">
-                        <br>
-                    </section> 
-                    
-                    <section>
-                        <label for="password">Password:</label>
-                        <input type="text" id="password" name="password">
-                        <br>
-                    </section>
+                            <section>
+                                <label for="firstName">First Name:</label>
+                                <input type="text" id="firstName" name="firstName">
+                                <br>
+                            </section>
+                            
+                            <section>
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" id="lastName" name="lastName">
+                                <br>
+                            </section>
+                            
+                            <section>
+                                <label for="userName">username:</label>
+                                <input type="text" id="userName" name="userName">
+                                <br>
+                            </section> 
+                            
+                            <section>
+                                <label for="password">Password:</label>
+                                <input type="text" id="password" name="password">
+                                <br>
+                            </section>
 
-                    <input type="submit" name="submit" value="Add"><span> <?php echo $error_message?></span><br>
-                </form>
-            </body>
-        </html>
+                            <input type="submit" name="submit" value="Add"><span> <?php echo $error_message?></span><br>
+                        </form>
+                    <?php
+                            } else {
+                            ?>
+                                <span>Only Admin is allowed to add users</span>
+                            <?php
+                            }
+                    ?>
+                </body>
+            </html>
 
+
+        
 
 
 
