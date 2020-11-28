@@ -38,7 +38,7 @@ else{
 
     //  Uncommment this later
     //  header('Location: /cis_435_project4/3_menu_page-admin-customer');
-    header('Location: /cis_435_project4/7_create_new_users-admin');
+    header('Location: /cis_435_project4/4_deposit_transfer_withdraw-customer/transfer.php');
     
      exit();
  }
