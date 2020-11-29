@@ -20,6 +20,13 @@
         $execStatement1->execute();
         $accounts = $execStatement1->fetchAll();
 
+        $accountsRowCount = $execStatement1->rowCount();
+        if ($accountsRowCount == 0)
+        {
+            $error_message = 'Error: You have no registered account';
+        }
+        
+
         if (isset($_POST['submit'])) {
             $entered_fromAccountID = htmlspecialchars($_POST['fromAccountID']);
             $entered_toAccountID = htmlspecialchars($_POST['toAccountID']);
@@ -66,6 +73,8 @@
 
 
         } 
+    } else {
+        $error_message = 'Only Customer is allowed to transfer money';
     }
     
 
@@ -122,9 +131,9 @@
         <?php
             } else {
             ?>
-                <span>Only Customer is allowed to transfer money</span>
+                <span><?php echo $error_message; ?></span>
             <?php
-            }
+            } 
         ?>
     </body>
 <html>
