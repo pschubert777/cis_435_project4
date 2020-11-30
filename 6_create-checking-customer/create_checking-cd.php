@@ -71,17 +71,27 @@
 <main>
 <h2>Create New Banking Account</h2>
 <form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
-    UserName: 
-    <input type="text" name="currentUserName" id="currentUserName" placeholder="UserName"><br>
-    Password: 
-    <input type="text" name="currentPassword" id="currentPassword" placeholder="Password"><br>
+    
+    <section>
+    UserName:  <input type="text" name="currentUserName" id="currentUserName" placeholder="UserName"><br>
+    </section>
+    
+    
+    <section>
+    Password: <input type="text" name="currentPassword" id="currentPassword" placeholder="Password"><br>
+    </section>
+    <section>
     Account:
     <input type="radio" name="accountType"
     <?php if (isset($accountSelection) && $accountSelection == "Checking") echo "checked";?> value="Checking">Checking
     <input type="radio" name="accountType"
     <?php if (isset($accountSelection) && $accountSelection == "CD") echo "checked";?> value="CD">CD
     <br>
+    </section>
+    <section>
     <input name="submit" type="submit" value="Create Account"></input> <br><br>
+    </section>
+    
 </form>
 <p class="error"><?php echo $error; ?></p>
 
