@@ -55,6 +55,7 @@
 
     ?>
     </table>
+    <p class="error"><?php echo $error; ?></p>
 </main>
 <?php 
     include('../header_footer_files/footer.php');

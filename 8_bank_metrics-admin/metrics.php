@@ -77,6 +77,7 @@
 <h2>Total Balance in Checkings Accounts:<?php echo ' '.$totalCheckings?></h2>
 <h2>Total Balance in CD Accounts:<?php echo ' '.$totalCD?></h2>
 <h2>Total Balance in Savings Accounts:<?php echo ' '.$totalSavings?></h2>
+<p class="error"><?php echo $error; ?></p>
 </main>
 
 <?php include('../header_footer_files/footer.php'); ?>
