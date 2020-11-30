@@ -40,6 +40,25 @@
                 $insertStatement->bindValue(':lastName', $entered_lastName);
                 $insertStatement->bindValue(':password', $entered_password);
                 $insertStatement->execute();
+                
+                $numRows = $insertStatement->rowCount();
+                if ($numRows>0) {
+                    $queryRetrieve='SELECT id FROM customer WHERE userName =:userName';
+                    $retrieveNewCustomer= $db->prepare($queryRetrieve);
+                    $retrieveNewCustomer->execute(['userName'=>$entered_userName]);
+                    $retrieve_result=$retrieveNewCustomer->fetch();
+                    $new_customer_id=$retrieve_result['id'];
+
+                    $queryCreateSavings='INSERT INTO customer_accounts 
+                                (customerID, accountType)
+                            VALUES
+                                (:customerID, :accountType)';
+
+                    $create_savings=$db->prepare($queryCreateSavings);
+                    $create_savings->execute(['customerID'=>$new_customer_id, 'accountType'=>'Savings']);
+                            
+                }
+
                 header("location: ../index.php");  
             }
             
