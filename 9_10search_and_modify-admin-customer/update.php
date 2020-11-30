@@ -10,6 +10,9 @@ else{
   $lname = $_POST['lname'];
   $username = $_POST['username'];
   $password = $_POST['password'];
+  
+  session_start();
+  $_SESSION['userName']=$username;
 
   $queryProducts = "UPDATE customer SET firstName=?, lastName=?, userName=?, password=? WHERE id=?";
 
