@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-  if (!isset($_SESSION['username'])) {
-     header('Location: /cis_435_project4/');
-    exit();
- } 
+  if (!isset($_SESSION['userName'])) {
+   header('Location: /cis_435_project4/');
+   exit();
+   
+ }  
 
 
 ?>
