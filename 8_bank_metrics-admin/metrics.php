@@ -26,7 +26,7 @@
 
 
     // 2.) Total amount in individual checkings
-    $checkingParam = "Checkings";
+    $checkingParam = "Checking";
     $sumCheckingsQuery = 'SELECT SUM(Balance) AS bal_check_sum FROM customer_accounts WHERE accountType = :accountType';
     $prep_stmt_checking = $db->prepare($sumCheckingsQuery);
     $prep_stmt_checking->execute(['accountType' => $checkingParam]);
