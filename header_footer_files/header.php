@@ -38,6 +38,7 @@ session_start();
                 $variable = 'Search Customer';
             ?>
                 <li><a href="/cis_435_project4/8_bank_metrics-admin/metrics.php">Bank Metrics</a></li>
+                <li><a href="/cis_435_project4/7_create_new_users-admin">Create New Users</a></li>
              <?php 
             endif;
             ?>
