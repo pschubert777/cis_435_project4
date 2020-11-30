@@ -33,7 +33,7 @@ session_start();
                 <li><a href="/cis_435_project4/4_deposit_transfer_withdraw-customer/withdraw.php">Withdraw</a></li>
                 <li><a href="/cis_435_project4/4_deposit_transfer_withdraw-customer/transfer.php">Transfer</a></li>
                 <li><a href="/cis_435_project4/6_create-checking-customer/create_checking-cd.php">Add New Account</a></li>
-            
+                <li><a href="/cis_435_project4/5_historical_data-customer/historical_data.php">Historical Data</a></li>
              <?php 
             else:
                 $variable = 'Search Customer';

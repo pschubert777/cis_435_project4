@@ -71,7 +71,13 @@
                     $execStatement3->bindValue(':accountID', $fetchedToAccount[0]['id']);
                     $execStatement3->bindValue(':Balance', $fetchedToAccount[0]['Balance'] + $entered_amount);
                     $execStatement3->execute();
+
+                    $queryLog='INSERT into historicalData (customerID, activityType, timeStamp) VALUES (:customerID, :activityType, :timeStamp)';
+                    $execStatement4=$db->prepare($queryLog);
+                    $execStatement4->execute(['customerID'=> $fetchedUser[0]['id'], 'activityType'=>'Transfer', 'timeStamp'=>date('Y-m-d H:i:s')]);
+
                     header('Location: /cis_435_project4/3_menu_page-admin-customer');
+                    exit();
                 } 
             }
         }

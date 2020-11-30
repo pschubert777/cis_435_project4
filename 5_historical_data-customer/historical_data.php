@@ -5,24 +5,17 @@
     $error = "";
 
     $currentCustomer = $_SESSION['userName'];
-
-    $get_custID = $db->query('SELECT customerID FROM customer WHERE userName = :userName');
+    $custID="";
+    $get_custID = 'SELECT id FROM customer WHERE userName = :userName';
 
     $prep_stmt = $db->prepare($get_custID);
     $prep_stmt->execute(['userName' => $currentCustomer]);
-    $row = $prep_stmt->fetchAll();
-    $row_count = $prep_stmt->rowCount();
+    $row = $prep_stmt->fetch();
+    $row_count = $prep_stmt->fetchColumn();
+   
 
     // get customer ID if only one record is returned
-    if($row_count ==1 ){
-        foreach($row as $curCustomer){
-            // get customers id
-            $custID = $curCustomer['customerID'];
-        }
-    }
-    else{
-        $error = "Error retrieving customer id from the user name.";
-    }
+   $custID=$row['id'];
 
 
 ?>
@@ -38,13 +31,13 @@
     </tr>
     <?php
     // set query
-    $query = $db->query('SELECT * FROM historicaldata WHERE customerID = :customerID');
+    $query = 'SELECT * FROM historicaldata WHERE customerID = :customerID';
 
     $prep_customer = $db->prepare($query);
     $prep_customer->execute(['customerID' => $custID]);
+    $row2=$prep_customer->fetchAll(PDO::FETCH_OBJ);
     
-
-    while($row = $prep_customer->fetch(PDO::FETCH_OBJ)){
+    foreach($row2 as $row){
         echo '<tr>';
         echo '<td>' . $row->id . '</td>';
         echo '<td>' . $row->customerID . '</td>';
