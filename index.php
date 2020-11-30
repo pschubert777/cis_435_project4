@@ -104,8 +104,7 @@ $error_message='Invalid credentials!';
 
 
 
-</body>
-</html>
+
 
 
 
