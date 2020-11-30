@@ -24,23 +24,44 @@
             }
             
             // query and add record
-            $queryCurrentCust = 'SELECT userName, password FROM customer WHERE userName=:uName, password=:passwrd';
-            echo $currentUserName; echo $currentPassword;
+            $queryCurrentCust = 'SELECT userName, password, id FROM customer WHERE userName=:uName AND password=:passwrd';
+            
             $prep_stmt = $db->prepare($queryCurrentCust);
             $prep_stmt->execute(['uName' => $currentUserName, 'passwrd' => $currentPassword]);
             $row = $prep_stmt->fetchAll();           
             $row_count = $prep_stmt->rowCount();
-            print_r($row);
+            
             if($row_count == 1){ 
                 // there was a result of that username and password combination
-                echo "im inside rowcount 1";
+                foreach($row as $newCustAccount){
+                    $custID = $newCustAccount['id'];
+                    // the account type is already in $accountType
+                }
+                // insert into customer_accounts table now
+                $newAccountQuery = 'INSERT INTO customer_accounts (customerID, accountType) VALUES (:custID, :accountType)';
+
+                $prep_stmt = $db->prepare($newAccountQuery);
+                $prep_stmt->execute(['custID' => $custID, 'accountType' => $accountType]);
+
+                // display success or error message
+                if($prep_stmt->rowCount() == 1){
+                    echo '<main>';
+                    echo '<h1>Create New Banking Account</h1>';
+                    echo '<p>Account Type {'.$accountType.'} was created succesfully</p>';
+                    echo '</main>';
+                    exit();
+                }
+                else{
+                    echo '<main>';
+                    echo '<h1>Create New Banking Account</h1>';
+                    echo 'The account was <em>not</em> created.<br><br>';
+                    echo '</main>';
+                    exit();
+                }
             }
             else{
-                $error = "There was no customer account with that User Name and Password";
+                $error = "There was no customer account with that UserName and Password";
             }
-
-
-            
         }
         
      }
@@ -48,7 +69,7 @@
 ?>
 
 <main>
-<h2>Select your desired type of account</h2>
+<h2>Create New Banking Account</h2>
 <form method="POST" action="<?php $_SERVER['PHP_SELF']?>">
     UserName: 
     <input type="text" name="currentUserName" id="currentUserName" placeholder="UserName"><br>
