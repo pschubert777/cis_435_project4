@@ -37,6 +37,7 @@ else{
      $_SESSION['userName']=$entered_username;
 
      header('Location: /cis_435_project4/3_menu_page-admin-customer');
+    
      exit();
  }
  else{
