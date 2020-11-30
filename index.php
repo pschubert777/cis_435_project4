@@ -36,9 +36,7 @@ else{
      $_SESSION['userType']=$user_type;
      $_SESSION['userName']=$entered_username;
 
-    //  Uncommment this later
-    //  header('Location: /cis_435_project4/3_menu_page-admin-customer');
-    header('Location: /cis_435_project4/4_deposit_transfer_withdraw-customer/transfer.php');
+     header('Location: /cis_435_project4/3_menu_page-admin-customer');
     
      exit();
  }

@@ -20,29 +20,45 @@
         $execStatement1->execute();
         $accounts = $execStatement1->fetchAll();
 
-        if (isset($_POST['submit'])) {
-            $entered_accountID = htmlspecialchars($_POST['accountID']);
-            $entered_amount = htmlspecialchars($_POST['amount']);
+        $accountsRowCount = $execStatement1->rowCount();
+        if ($accountsRowCount == 0)
+        {
+            $error_message = 'Error: You have no registered account';
+        } else {
+            if (isset($_POST['submit'])) {
+                $entered_accountID = htmlspecialchars($_POST['accountID']);
+                $entered_amount = htmlspecialchars($_POST['amount']);
 
-            $queryAccount = "SELECT * FROM customer_accounts WHERE id=:entered_accountID";
-            $execStatement2 = $db->prepare($queryAccount);
-            $execStatement2->bindValue(':entered_accountID', $entered_accountID);
-            $execStatement2->execute();
-            $fetchedAccount = $execStatement2->fetchAll();
+                $queryAccount = "SELECT * FROM customer_accounts WHERE id=:entered_accountID";
+                $execStatement2 = $db->prepare($queryAccount);
+                $execStatement2->bindValue(':entered_accountID', $entered_accountID);
+                $execStatement2->execute();
+                $fetchedAccount = $execStatement2->fetchAll();
 
-            $newBalance = $fetchedAccount[0]['Balance'] + $entered_amount;
-            
-            $queryUpdate = "UPDATE customer_accounts
-                            SET Balance = :Balance
-                            WHERE id = :accountID";
-            $execStatement3 = $db->prepare($queryUpdate);
-            $execStatement3->bindValue(':accountID', $fetchedAccount[0]['id']);
-            $execStatement3->bindValue(':Balance', $entered_amount + $fetchedAccount[0]['Balance']);
-            // echo $fetchedAccount[0]['accountType'];
-            $execStatement3->execute();
+                if ($entered_amount == '')
+                {
+                    $error_message = 'Error: Deposit amount it empty';
+                } else {
+                    $newBalance = $fetchedAccount[0]['Balance'] + $entered_amount;
+                    
+                    $queryUpdate = "UPDATE customer_accounts
+                                    SET Balance = :Balance
+                                    WHERE id = :accountID";
+                    $execStatement3 = $db->prepare($queryUpdate);
+                    $execStatement3->bindValue(':accountID', $fetchedAccount[0]['id']);
+                    $execStatement3->bindValue(':Balance', $entered_amount + $fetchedAccount[0]['Balance']);
+                    $execStatement3->execute();
+                }
+
+                
 
 
-        } 
+            } 
+        }
+
+        
+    } else {
+        $error_message = 'Only Customer is allowed to deposit money';
     }
     
 
@@ -55,9 +71,10 @@
         <title>
             Deposit Money
         </title>
+        <link rel="stylesheet" type="text/css" href="/cis_435_project4/styles/main.css">
         <meta charset="UTF-8">
     </head>
-    <body>
+    <main>
         <?php
             if ($currentUser == 'customer')
             {
@@ -82,16 +99,19 @@
                     <br>
                 </section>
 
-                <input type="submit" name="submit" value="Deposit"><span> <?php echo $error_message?></span><br>
+                <section>
+                    <input type="submit" name="submit" value="Deposit"><span> <?php echo $error_message?></span><br>
+                </section>
+                
             </form>
         <?php
             } else {
             ?>
-                <span>Only Customer is allowed to deposit money</span>
+                <span><?php echo $error_message; ?></span>
             <?php
             }
         ?>
-    </body>
+    </main>
 <html>
 
 <?php include '../header_footer_files/footer.php'; ?>

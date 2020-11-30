@@ -55,9 +55,10 @@
                     <title>
                         Add User
                     </title>
+                    <link rel="stylesheet" type="text/css" href="/cis_435_project4/styles/main.css">
                     <meta charset="UTF-8">
                 </head>
-                <body>
+                <main>
                     <?php
                         if ($currentUser == 'admin')
                         {
@@ -96,7 +97,10 @@
                                 <br>
                             </section>
 
-                            <input type="submit" name="submit" value="Add"><span> <?php echo $error_message?></span><br>
+                            <section>
+                                <input type="submit" name="submit" value="Add"><span> <?php echo $error_message?></span><br>
+                            </section>  
+                            
                         </form>
                     <?php
                             } else {
@@ -105,7 +109,7 @@
                             <?php
                             }
                     ?>
-                </body>
+                </main>
             </html>
 
 
