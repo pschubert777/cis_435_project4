@@ -2,7 +2,7 @@
 
 $error_message ='';
 session_start();
-if (isset($_SESSION['user_type'])) {
+if (isset($_SESSION['userType'])) {
     header('Location: /cis_435_project4/3_menu_page-admin-customer');
     exit();
 }
