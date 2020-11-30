@@ -45,7 +45,12 @@
                 if ($entered_amount == '')
                 {
                     $error_message = 'Error: Transfer amount is empty';
-                } else if ($fetchedFromAccount[0]['Balance'] - $entered_amount < 0) {
+                }
+                else if ($error_message < 0) 
+                {
+                    $error_message = 'Error: Transfer amount is negative';
+                }
+                else if ($fetchedFromAccount[0]['Balance'] - $entered_amount < 0) {
                     $error_message = 'Error: Transfer amount excedes current balance in ' . $fetchedFromAccount[0]['accountType'] . ' - ' . $fetchedFromAccount[0]['id'] . '';
                 } else if ($fetchedFromAccount[0]['id'] == $fetchedToAccount[0]['id']) {
                     $error_message = 'Error: Cannot tranfer to the same account';
@@ -66,6 +71,7 @@
                     $execStatement3->bindValue(':accountID', $fetchedToAccount[0]['id']);
                     $execStatement3->bindValue(':Balance', $fetchedToAccount[0]['Balance'] + $entered_amount);
                     $execStatement3->execute();
+                    header('Location: /cis_435_project4/3_menu_page-admin-customer');
                 } 
             }
         }

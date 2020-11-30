@@ -40,6 +40,10 @@
                 if ($entered_amount == '') {
                     $error_message = 'Error: Withdraw amount is empty';
                 }
+                else if ($entered_amount < 0)
+                {
+                    $error_message = 'Error: Withdraw amount is negative';
+                }
                 else if ($fetchedAccount[0]['Balance'] - $entered_amount < 0) {
                     $error_message = 'Error: withdrawal amount excedes current balance';
                 }
@@ -52,6 +56,7 @@
                     $execStatement3->bindValue(':accountID', $fetchedAccount[0]['id']);
                     $execStatement3->bindValue(':Balance', $fetchedAccount[0]['Balance'] - $entered_amount);
                     $execStatement3->execute();
+                    header('Location: /cis_435_project4/3_menu_page-admin-customer');
                 } 
             
 

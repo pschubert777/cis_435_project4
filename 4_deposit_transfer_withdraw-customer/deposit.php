@@ -38,7 +38,12 @@
                 if ($entered_amount == '')
                 {
                     $error_message = 'Error: Deposit amount it empty';
-                } else {
+                }
+                else if ($entered_amount < 0)
+                {
+                    $error_message ='Error: Deposit amount is negative';
+                }
+                else {
                     $newBalance = $fetchedAccount[0]['Balance'] + $entered_amount;
                     
                     $queryUpdate = "UPDATE customer_accounts
@@ -48,6 +53,7 @@
                     $execStatement3->bindValue(':accountID', $fetchedAccount[0]['id']);
                     $execStatement3->bindValue(':Balance', $entered_amount + $fetchedAccount[0]['Balance']);
                     $execStatement3->execute();
+                    header('Location: /cis_435_project4/3_menu_page-admin-customer');
                 }
 
                 
