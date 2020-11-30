@@ -96,14 +96,10 @@ $error_message='Invalid credentials!';
     
     </main>
 
-    <footer>
-    <p>
-
-        &copy Nisarg Patel, Peter Schubert, Geoffrey Lynch, Nathan Carey 2020
-    </p>
-
+    <?php
+        include('header_footer_files/footer.php')
     
-    </footer>
+    ?>
 
 
 
