@@ -3,12 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 21, 2020 at 02:08 PM
+-- Generation Time: Dec 01, 2020 at 10:21 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -42,7 +43,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `userName`, `firstName`, `lastName`, `password`) VALUES
-(1, 'admin', 'admin1', 'admin1', '12345');
+(1, 'admin', 'admin1', 'admin1', '12345'),
+(2, 'admin02', 'Adam', 'Smith', 'pa55word'),
+(3, 'admin03', 'admin2', 'admin2', 'pa55word');
 
 -- --------------------------------------------------------
 
@@ -59,6 +62,18 @@ CREATE TABLE `customer` (
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `userName`, `firstName`, `lastName`, `password`) VALUES
+(1, 'johnnysmith02', 'John', 'Smith', 'password'),
+(2, 'customeruser02', 'Cory', 'Williams', 'password'),
+(4, 'psmith', 'Peter', 'Smith', 'pa55word'),
+(5, 'psmith02', 'Peter', 'Smith', 'pa55word'),
+(6, 'tbrady01', 'Tom', 'Brady', 'pa55word'),
+(7, 'tbrady02', 'Tom', 'Brady2', 'pa55word');
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +88,20 @@ CREATE TABLE `customer_accounts` (
   `Balance` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer_accounts`
+--
+
+INSERT INTO `customer_accounts` (`id`, `customerID`, `accountType`, `Balance`) VALUES
+(1, 1, 'Savings', 8800),
+(3, 1, 'CD', 0),
+(6, 5, 'Savings', 10000),
+(8, 5, 'Checking', 2000),
+(9, 1, 'Checking', 0),
+(10, 6, 'Savings', 4600),
+(11, 6, 'Checking', 4700),
+(12, 7, 'Savings', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -86,6 +115,15 @@ CREATE TABLE `historicalData` (
   `activityType` varchar(100) NOT NULL,
   `timeStamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `historicalData`
+--
+
+INSERT INTO `historicalData` (`id`, `customerID`, `activityType`, `timeStamp`) VALUES
+(1, 6, 'Deposit', '2020-12-01 00:12:48'),
+(2, 6, 'Transfer', '2020-12-01 00:15:44'),
+(3, 6, 'Withdraw', '2020-12-01 00:15:58');
 
 --
 -- Indexes for dumped tables
@@ -125,26 +163,25 @@ ALTER TABLE `historicalData`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `customer_accounts`
 --
 ALTER TABLE `customer_accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `historicalData`
 --
 ALTER TABLE `historicalData`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
